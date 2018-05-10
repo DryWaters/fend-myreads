@@ -38,14 +38,20 @@ class BooksDashboard extends React.Component {
     console.log(book);
     console.log(this);
     console.log(toWhere);
+ 
   }
 
   render() {
     return (
       <div>
-        <BookShelf moveBook={this.moveBook} title="Currently Reading" books={this.state.currentlyReading} />
-        <BookShelf moveBook={this.moveBook} title="Want to Read" books={this.state.wantToRead} />
-        <BookShelf moveBook={this.moveBook} title="Reading" books={this.state.read} />
+        { Object.keys(this.state).map(shelfType => (
+          <BookShelf
+            key={shelfType}
+            moveBook={this.moveBook}
+            title={shelfType}
+            books={this.state[shelfType]}
+          />
+        ))}
       </div>
     );
   }
