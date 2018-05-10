@@ -43,14 +43,18 @@ class BooksDashboard extends React.Component {
   render() {
     return (
       <div>
-        { Object.keys(this.state).map(shelfType => (
-          <BookShelf
+        {Object.keys(this.state).map((shelfType) => {
+          // split the type on camelcase to create the title of shelf
+          let shelfName = shelfType.split(/(?=[A-Z])/).join(' ');
+          shelfName = shelfName.charAt(0).toUpperCase() + shelfName.substr(1);
+          return (<BookShelf
             key={shelfType}
             moveBook={this.moveBook}
-            title={shelfType}
+            title={shelfName}
             books={this.state[shelfType]}
           />
-        ))}
+          );
+        })}
       </div>
     );
   }
