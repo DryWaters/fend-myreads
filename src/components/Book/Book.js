@@ -25,6 +25,40 @@ const Book = ({ moveBook, details = {} }) => (
 export default Book;
 
 Book.propTypes = {
-  details: PropTypes.object,
+  details: PropTypes.shape({
+    allowAnonLoggin: PropTypes.bool,
+    authors: PropTypes.arrayOf(PropTypes.string),
+    averageRating: PropTypes.number,
+    canonicalVolumeLink: PropTypes.string,
+    categories: PropTypes.arrayOf(PropTypes.string),
+    contentDescription: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.string,
+    imageLinks: PropTypes.shape({
+      smallThumbnail: PropTypes.string,
+      thumbnail: PropTypes.string,
+    }),
+    industryIdentifiers: PropTypes.arrayOf(PropTypes.object),
+    infoLink: PropTypes.string,
+    language: PropTypes.string,
+    maturityRating: PropTypes.string,
+    pageCount: PropTypes.number,
+    panelizationSummary: PropTypes.shape({
+      containsEpubBubbles: PropTypes.bool,
+      containsImageBubbles: PropTypes.bool,
+    }),
+    previewLink: PropTypes.string,
+    printType: PropTypes.string,
+    publishedDate: PropTypes.string,
+    publisher: PropTypes.string,
+    ratingsCount: PropTypes.number,
+    readingMods: PropTypes.shape({
+      image: PropTypes.bool,
+      text: PropTypes.bool,
+    }),
+    shelf: PropTypes.string,
+    subtitle: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
   moveBook: PropTypes.func.isRequired,
 };
