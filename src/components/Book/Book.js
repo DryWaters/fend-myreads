@@ -25,6 +25,6 @@ const Book = ({ moveBook, details = {} }) => (
 export default Book;
 
 Book.propTypes = {
-  details: PropTypes.object.isRequired,
+  details: PropTypes.object,
   moveBook: PropTypes.func.isRequired,
 };

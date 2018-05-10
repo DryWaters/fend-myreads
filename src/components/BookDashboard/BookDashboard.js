@@ -10,7 +10,6 @@ class BooksDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: '',
       books: [],
     };
     this.moveBook = this.moveBook.bind(this);
@@ -27,7 +26,16 @@ class BooksDashboard extends React.Component {
   }
 
   moveBook(bookId, toWhere) {
-
+    const newBooks = this.state.books.map((book) => {
+      if (book.id === bookId) {
+        return {
+          ...book,
+          shelf: toWhere,
+        };
+      }
+      return book;
+    });
+    this.setState({ books: newBooks });
   }
 
   render() {
