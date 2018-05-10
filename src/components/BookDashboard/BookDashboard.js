@@ -49,7 +49,7 @@ class BooksDashboard extends React.Component {
         books: [],
       },
       read: {
-        title: 'Reading',
+        title: 'Read',
         books: [],
       },
     };

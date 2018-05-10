@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from '../Book/Book';
 
-const BookShelf = ({ bookShelf, moveBook, title, books = [] }) => (
+const BookShelf = ({
+  bookShelf, moveBook, title, books = [],
+}) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
     <ol className="books-grid">
