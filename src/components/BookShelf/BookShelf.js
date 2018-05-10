@@ -5,9 +5,11 @@ import Book from '../Book/Book';
 const BookShelf = ({ title, books = [] }) => (
   <div>
     <h2>{title}</h2>
-    { books.map(book => (
-      <Book key={book.title} details={book} />
-    ))}
+    <ol>
+      {books.map(book => (
+        <Book key={book.title} details={book} />
+      ))}
+    </ol>
   </div>
 );
 
