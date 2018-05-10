@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
-import * as BooksAPI from '../BooksAPI/BooksAPI';
+import { getAll } from '../BooksAPI/BooksAPI';
 import '../../styles/book-dashboard.css';
 import '../../styles/styles.css';
 
@@ -17,7 +17,7 @@ class BooksDashboard extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll()
+    getAll()
       .then((data) => {
         this.setState({ books: data });
       })

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Book from '../Book/Book';
 
 const BookShelf = ({
-  bookShelf, moveBook, title, books = [],
+  bookShelf = '', moveBook, title = '', books = [],
 }) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
@@ -18,8 +18,15 @@ const BookShelf = ({
 export default BookShelf;
 
 BookShelf.propTypes = {
-  title: PropTypes.string.isRequired,
-  books: PropTypes.arrayOf(PropTypes.object).isRequired,
-  moveBook: PropTypes.func.isRequired,
-  bookShelf: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  books: PropTypes.arrayOf(PropTypes.object),
+  moveBook: PropTypes.func,
+  bookShelf: PropTypes.string,
+};
+
+BookShelf.defaultProps = {
+  title: '',
+  books: [],
+  moveBook: () => {},
+  bookShelf: '',
 };
