@@ -12,8 +12,22 @@ class BooksDashboard extends React.Component {
   }
 
   componentDidMount() {
+    const newState = {
+      currentlyReading: [],
+      wantToRead: [],
+      read: [],
+    };
     BooksAPI.getAll().then((data) => {
-      this.setState(data);
+      Object.keys(data).forEach((index) => {
+        if (data[index].shelf === 'currentlyReading') {
+          newState.currentlyReading.push(data[index]);
+        } else if (data[index].shelf === 'wantToRead') {
+          newState.wantToRead.push(data[index]);
+        } else {
+          newState.read.push(data[index]);
+        }
+      });
+      this.setState(newState);
     }).catch((error) => {
       window.console.log(`Unable to contact books API with error ${error}`);
     });
@@ -22,9 +36,9 @@ class BooksDashboard extends React.Component {
   render() {
     return (
       <div>
-        <BookShelf />
-        <BookShelf />
-        <BookShelf />
+        <BookShelf title="Currently Reading" books={this.state.currentlyReading} />
+        <BookShelf title="Want to Read" books={this.state.wantToRead} />
+        <BookShelf title="Reading" books={this.state.read} />
       </div>
     );
   }
