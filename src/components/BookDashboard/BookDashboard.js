@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
@@ -7,7 +7,7 @@ import '../../styles/book-dashboard.css';
 import '../../styles/styles.css';
 
 
-class BooksDashboard extends React.Component {
+class BooksDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
