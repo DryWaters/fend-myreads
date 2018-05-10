@@ -15,14 +15,16 @@ class SearchDashboard extends Component {
   }
 
   onInputChange(value) {
-    search(value)
-      .then((data) => {
-        if (data.length !== 0) {
-          this.setState({ books: data });
-        }
-      }).catch((error) => {
-        window.console.log(`Unable to contact Books API with error ${error}`);
-      });
+    if (value !== '') {
+      search(value)
+        .then((data) => {
+          if (data.length !== 0) {
+            this.setState({ books: data });
+          }
+        }).catch((error) => {
+          window.console.log(`Unable to contact Books API with error ${error}`);
+        });
+    }
   }
 
   moveBook(bookId, toWhere) {
