@@ -9,30 +9,21 @@ import '../../styles/styles.css';
 class BooksDashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      searchTerm: '',
+      books: [],
+    };
     this.moveBook = this.moveBook.bind(this);
   }
 
   componentDidMount() {
-    const newState = {
-      currentlyReading: [],
-      wantToRead: [],
-      read: [],
-    };
-    BooksAPI.getAll().then((data) => {
-      Object.keys(data).forEach((index) => {
-        if (data[index].shelf === 'currentlyReading') {
-          newState.currentlyReading.push(data[index]);
-        } else if (data[index].shelf === 'wantToRead') {
-          newState.wantToRead.push(data[index]);
-        } else {
-          newState.read.push(data[index]);
-        }
+    BooksAPI.getAll()
+      .then((data) => {
+        this.setState({ books: data });
+      })
+      .catch((error) => {
+        window.console.log(`Unable to contact books API with error ${error}`);
       });
-      this.setState(newState);
-    }).catch((error) => {
-      window.console.log(`Unable to contact books API with error ${error}`);
-    });
   }
 
   moveBook(bookId, toWhere) {
@@ -40,22 +31,43 @@ class BooksDashboard extends React.Component {
   }
 
   render() {
+    const bookTypes = {
+      currentlyReading: {
+        title: 'Currently Reading',
+        books: [],
+      },
+      wantToRead: {
+        title: 'Want to Read',
+        books: [],
+      },
+      read: {
+        title: 'Reading',
+        books: [],
+      },
+    };
+
+    this.state.books.forEach((book) => {
+      if (book.shelf === 'currentlyReading') {
+        bookTypes.currentlyReading.books.push(book);
+      } else if (book.shelf === 'wantToRead') {
+        bookTypes.wantToRead.books.push(book);
+      } else {
+        bookTypes.read.books.push(book);
+      }
+    });
+
     return (
       <div>
         <Header title="MyReads" />
         <div className="list-books-content">
-          {Object.keys(this.state).map((shelfType) => {
-            // split the type on camelcase to create the title of shelf
-            let shelfName = shelfType.split(/(?=[A-Z])/).join(' ');
-            shelfName = shelfName.charAt(0).toUpperCase() + shelfName.substr(1);
-            return (<BookShelf
+          {Object.keys(bookTypes).map(shelfType => (
+            <BookShelf
               key={shelfType}
               moveBook={this.moveBook}
-              title={shelfName}
-              books={this.state[shelfType]}
+              title={bookTypes[shelfType].title}
+              books={bookTypes[shelfType].books}
             />
-            );
-          })}
+          ))}
         </div>
       </div>
     );
