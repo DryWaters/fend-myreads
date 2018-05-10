@@ -10,4 +10,4 @@ const jsx = (
   </BrowserRouter>
 );
 
-ReactDOM.render(jsx, document.getElementById('root'))
+ReactDOM.render(jsx, document.getElementById('root'));

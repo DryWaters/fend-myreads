@@ -11,7 +11,11 @@ class BooksDashboard extends React.Component {
   }
 
   componentDidMount() {
-    console.log(BooksAPI.getAll());
+    BooksAPI.getAll().then((data) => {
+      this.setState(data);
+    }).catch((error) => {
+      window.console.log(`Unable to contact books API with error ${error}`);
+    });
   }
 
   render() {
