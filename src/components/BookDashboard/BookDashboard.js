@@ -38,7 +38,6 @@ class BooksDashboard extends React.Component {
     console.log(book);
     console.log(this);
     console.log(toWhere);
- 
   }
 
   render() {
