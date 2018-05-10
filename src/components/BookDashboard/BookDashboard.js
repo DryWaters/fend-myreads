@@ -79,7 +79,9 @@ class BooksDashboard extends React.Component {
             />
           ))}
         </div>
-        <Link href="/search" to="/search">Search </Link>
+        <div className="open-search">
+          <Link className="open-search a" href="/search" to="/search">Search </Link>
+        </div>
       </div>
     );
   }
