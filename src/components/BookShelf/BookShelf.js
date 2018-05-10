@@ -9,7 +9,7 @@ const BookShelf = ({
     <h2 className="bookshelf-title">{title}</h2>
     <ol className="books-grid">
       {books !== undefined ? books.map(book => (
-        <Book key={book.title} details={book} moveBook={moveBook} bookShelf={bookShelf} />
+        <Book key={book.id} details={book} moveBook={moveBook} bookShelf={bookShelf} />
       )) : ''}
     </ol>
   </div>
