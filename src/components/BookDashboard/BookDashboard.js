@@ -9,6 +9,7 @@ class BooksDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.moveBook = this.moveBook.bind(this);
   }
 
   componentDidMount() {
@@ -33,12 +34,18 @@ class BooksDashboard extends React.Component {
     });
   }
 
+  moveBook(book, toWhere) {
+    console.log(book);
+    console.log(this);
+    console.log(toWhere);
+  }
+
   render() {
     return (
       <div>
-        <BookShelf title="Currently Reading" books={this.state.currentlyReading} />
-        <BookShelf title="Want to Read" books={this.state.wantToRead} />
-        <BookShelf title="Reading" books={this.state.read} />
+        <BookShelf moveBook={this.moveBook} title="Currently Reading" books={this.state.currentlyReading} />
+        <BookShelf moveBook={this.moveBook} title="Want to Read" books={this.state.wantToRead} />
+        <BookShelf moveBook={this.moveBook} title="Reading" books={this.state.read} />
       </div>
     );
   }
