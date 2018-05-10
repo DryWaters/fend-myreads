@@ -1,6 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
+import { BrowserRouter, Link } from 'react-router-dom'
+import BookDashboard from './components/BookDashboard/BookDashboard';
+import './styles/styles.css'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const jsx = (
+  <BrowserRouter>
+    <BookDashboard />
+  </BrowserRouter>
+);
+
+ReactDOM.render(jsx, document.getElementById('root'))
