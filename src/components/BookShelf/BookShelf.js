@@ -8,9 +8,9 @@ const BookShelf = ({
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
     <ol className="books-grid">
-      {books.map(book => (
+      {books !== undefined ? books.map(book => (
         <Book key={book.title} details={book} moveBook={moveBook} bookShelf={bookShelf} />
-      ))}
+      )) : ''}
     </ol>
   </div>
 );
@@ -27,6 +27,6 @@ BookShelf.propTypes = {
 BookShelf.defaultProps = {
   title: '',
   books: [],
-  moveBook: () => {},
+  moveBook: () => { },
   bookShelf: '',
 };
