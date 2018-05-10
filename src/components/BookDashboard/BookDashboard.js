@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
 import * as BooksAPI from '../BooksAPI/BooksAPI';
 import '../../styles/book-dashboard.css';
@@ -43,18 +44,21 @@ class BooksDashboard extends React.Component {
   render() {
     return (
       <div>
-        {Object.keys(this.state).map((shelfType) => {
-          // split the type on camelcase to create the title of shelf
-          let shelfName = shelfType.split(/(?=[A-Z])/).join(' ');
-          shelfName = shelfName.charAt(0).toUpperCase() + shelfName.substr(1);
-          return (<BookShelf
-            key={shelfType}
-            moveBook={this.moveBook}
-            title={shelfName}
-            books={this.state[shelfType]}
-          />
-          );
-        })}
+        <Header title="MyReads" />
+        <div className="list-books-content">
+          {Object.keys(this.state).map((shelfType) => {
+            // split the type on camelcase to create the title of shelf
+            let shelfName = shelfType.split(/(?=[A-Z])/).join(' ');
+            shelfName = shelfName.charAt(0).toUpperCase() + shelfName.substr(1);
+            return (<BookShelf
+              key={shelfType}
+              moveBook={this.moveBook}
+              title={shelfName}
+              books={this.state[shelfType]}
+            />
+            );
+          })}
+        </div>
       </div>
     );
   }

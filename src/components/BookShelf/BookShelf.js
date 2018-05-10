@@ -17,9 +17,5 @@ export default BookShelf;
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
-  books: PropTypes.arrayOf(PropTypes.object),
-};
-
-BookShelf.defaultProps = {
-  books: [],
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
