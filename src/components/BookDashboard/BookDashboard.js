@@ -35,10 +35,8 @@ class BooksDashboard extends React.Component {
     });
   }
 
-  moveBook(book, toWhere) {
-    console.log(book);
-    console.log(this);
-    console.log(toWhere);
+  moveBook(bookId, toWhere) {
+
   }
 
   render() {
