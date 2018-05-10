@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
 import * as BooksAPI from '../BooksAPI/BooksAPI';
@@ -78,6 +79,7 @@ class BooksDashboard extends React.Component {
             />
           ))}
         </div>
+        <Link href="/search" to="/search">Search </Link>
       </div>
     );
   }
