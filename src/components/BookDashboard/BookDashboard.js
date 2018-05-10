@@ -74,6 +74,7 @@ class BooksDashboard extends React.Component {
               moveBook={this.moveBook}
               title={bookTypes[shelfType].title}
               books={bookTypes[shelfType].books}
+              bookShelf={shelfType}
             />
           ))}
         </div>
