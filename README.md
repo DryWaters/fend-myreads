@@ -9,9 +9,9 @@ MyReads project is a React application that pulls from a backend supplied by Uda
 * [Authors](#authors)
 
 ## Instructions
-<p>Books are placed in the different categories by clicking the down arrow on the bottom right corner of a book.  To remove a book totally from your book shelves click "none".  To add books to your collection, click on the + icon in the bottom right corner of the screen.  This will take you to a new screen where you can search for additional books to add to your collection.</p>
-<p>Search terms are limited as this is just a demo application for the Front-End Nanodegree program.  Please read the 
-[Search Terms](https://github.com/DryWaters/fend-myreads/blob/master/SEARCH_TERMS.md) for the valid search terms.
+Books are placed in the different categories by clicking the down arrow on the bottom right corner of a book.  To remove a book totally from your book shelves click "none".  To add books to your collection, click on the + icon in the bottom right corner of the screen.  This will take you to a new screen where you can search for additional books to add to your collection.
+
+Search terms are limited as this is just a demo application for the Front-End Nanodegree program.  Please read the [Search Terms](https://github.com/DryWaters/fend-myreads/blob/master/SEARCH_TERMS.md) for the valid search terms.
 
 ## Getting Started
 All needed NPM packages are included in the package.json file.  To install to your machine locally:
