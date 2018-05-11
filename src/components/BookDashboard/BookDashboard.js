@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
-import { getAll } from '../BooksAPI/BooksAPI';
+import { getAll, update } from '../BooksAPI/BooksAPI';
 import '../../styles/book-dashboard.css';
 import '../../styles/styles.css';
 
@@ -26,7 +26,9 @@ class BooksDashboard extends Component {
       });
   }
 
-  moveBook({ id }, toWhere) {
+  moveBook(bookToChange, toWhere) {
+    const { id } = bookToChange;
+    update(bookToChange, toWhere);
     const newBooks = this.state.books.map((book) => {
       if (book.id === id) {
         return {
