@@ -11,7 +11,7 @@ const Book = ({ bookShelf, moveBook, details = {} }) => (
             {
               width: 128,
               height: 193,
-              backgroundImage: `url("${details.imageLinks.smallThumbnail}")`,
+              backgroundImage: `url("${details.imageLinks.smallThumbnail || '../../styles/icons/no-thumbnail.png'}")`,
             }
           }
         />
@@ -25,7 +25,7 @@ const Book = ({ bookShelf, moveBook, details = {} }) => (
         </div>
       </div>
       <div className="book-title">{details.title}</div>
-      {details.authors !== undefined ? details.authors.map(author => <div key={author} className="book-authors">{author}</div>) : ''}
+      {details.authors && details.authors.map(author => <div key={author} className="book-authors">{author}</div>)}
     </div>
   </li>
 );

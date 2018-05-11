@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from 'underscore';
 import BookShelf from '../BookShelf/BookShelf';
 import { search } from '../BooksAPI/BooksAPI';
+import NoBooks from '../NoBooks/NoBooks';
 
 class SearchDashboard extends Component {
   constructor() {
@@ -18,7 +19,9 @@ class SearchDashboard extends Component {
     if (value !== '') {
       search(value)
         .then((data) => {
-          if (data.length !== 0) {
+          if (data.error) {
+            this.setState({ books: [] });
+          } else {
             this.setState({ books: data });
           }
         }).catch((error) => {
@@ -47,7 +50,7 @@ class SearchDashboard extends Component {
           <Link className="close-search" href="/" to="/" aria-label="Back to main" />
           <input onChange={(e) => { e.persist(); this.onInputChange(e.target.value); }} type="text" placeholder="Search by title or author" />
         </div>
-        {this.state.books.length !== 0 ? <BookShelf moveBook={this.moveBook} books={this.state.books} /> : ''}
+        {this.state.books.length !== 0 ? <BookShelf moveBook={this.moveBook} books={this.state.books} /> : <NoBooks />}
       </div>
     );
   }
