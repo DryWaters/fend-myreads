@@ -108,7 +108,7 @@ class BooksDashboard extends Component {
           {this.shouldDisplayBookshelves()}
         </div>
         <div className="open-search">
-          <Link className="open-search a" href="/search" to="/search">Search</Link>
+          <Link className="open-search a" href="/search" to="/search" aria-label="To search">Search</Link>
         </div>
       </div>
     );

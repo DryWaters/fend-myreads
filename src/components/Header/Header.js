@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Header = ({ title = 'MyReads' }) => (
+// Simple header
+const Header = ({ title }) => (
   <div className="list-books-title">
     <h1>{title}</h1>
   </div>
@@ -10,6 +11,9 @@ const Header = ({ title = 'MyReads' }) => (
 export default Header;
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
 
+Header.defaultProps = {
+  title: 'MyRead',
 };
