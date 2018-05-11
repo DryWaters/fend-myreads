@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import BookShelf from '../BookShelf/BookShelf';
+import NoBooks from '../NoBooks/NoBooks';
 import { getAll, update } from '../BooksAPI/BooksAPI';
-import '../../styles/book-dashboard.css';
-import '../../styles/styles.css';
-
 
 class BooksDashboard extends Component {
   constructor(props) {
@@ -29,6 +27,10 @@ class BooksDashboard extends Component {
   moveBook(bookToChange, toWhere) {
     const { id } = bookToChange;
     update(bookToChange, toWhere);
+    if (toWhere === 'none') {
+      this.setState({ books: this.state.books.filter(book => book.id !== id) });
+      return;
+    }
     const newBooks = this.state.books.map((book) => {
       if (book.id === id) {
         return {
@@ -39,6 +41,24 @@ class BooksDashboard extends Component {
       return book;
     });
     this.setState({ books: newBooks });
+  }
+
+  shouldDisplayBookshelfs(bookTypes) {
+    let jsx = '';
+    if (this.state.books.length === 0) {
+      jsx = <NoBooks />;
+    } else {
+      jsx = Object.keys(bookTypes).map(shelfType => (
+        <BookShelf
+          key={shelfType}
+          moveBook={this.moveBook}
+          title={bookTypes[shelfType].title}
+          books={bookTypes[shelfType].books}
+          bookShelf={shelfType}
+        />
+      ));
+    }
+    return jsx;
   }
 
   render() {
@@ -71,15 +91,7 @@ class BooksDashboard extends Component {
       <div>
         <Header title="MyReads" />
         <div className="list-books-content">
-          {Object.keys(bookTypes).map(shelfType => (
-            <BookShelf
-              key={shelfType}
-              moveBook={this.moveBook}
-              title={bookTypes[shelfType].title}
-              books={bookTypes[shelfType].books}
-              bookShelf={shelfType}
-            />
-          ))}
+          {this.shouldDisplayBookshelfs(bookTypes)}
         </div>
         <div className="open-search">
           <Link className="open-search a" href="/search" to="/search">Search </Link>

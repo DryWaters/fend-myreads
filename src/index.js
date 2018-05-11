@@ -5,6 +5,7 @@ import BookDashboard from './components/BookDashboard/BookDashboard';
 import SearchDashboard from './components/SearchDashboard/SearchDashboard';
 import './styles/styles.css';
 
+// Setup two routes for either main page or searching for books
 const jsx = (
   <BrowserRouter>
     <div>

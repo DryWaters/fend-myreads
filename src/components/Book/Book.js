@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import noThumbnail from '../../styles/icons/no-thumbnail.png';
 
+// Book is a stateless component that receives the props that includes the
+// shelf the book should be on, a function to change the shelf, and the book
+// details that are passed down from the "BookShelf" component
 const Book = ({ bookShelf, moveBook, book }) => (
   <li>
     <div className="book">
       <div className="book-top">
         <div
           className="book-cover"
+          // react in-line style that shows either the image if available or the no thumbnail
+          // filler image if not available
           style={
             {
               width: 128,
@@ -27,13 +32,20 @@ const Book = ({ bookShelf, moveBook, book }) => (
         </div>
       </div>
       <div className="book-title">{book.title}</div>
-      {book.authors && book.authors.map(author => <div key={author} className="book-authors">{author}</div>)}
+      {
+        // dynamically create authors <div>s as long as the book.authors key is defined
+        book.authors && book.authors.map(author => <div key={author} className="book-authors">{author}</div>)
+      }
     </div>
   </li>
 );
 
 export default Book;
 
+// define all the propTypes for the book that is
+// returned by the BooksAPI that is stored within
+// the state of the component "BookDashboard" or
+// "SearchDashboard"
 Book.propTypes = {
   book: PropTypes.shape({
     allowAnonLoggin: PropTypes.bool,
