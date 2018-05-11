@@ -10,6 +10,7 @@ const Book = ({ bookShelf, moveBook, book }) => (
     <div className="book">
       <div className="book-top">
         <div
+
           className="book-cover"
           // react in-line style that shows either the image if available or the no thumbnail
           // filler image if not available
@@ -17,7 +18,7 @@ const Book = ({ bookShelf, moveBook, book }) => (
             {
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.smallThumbnail || noThumbnail})`,
+              backgroundImage: `url(${book.imageLinks === undefined ? noThumbnail : book.imageLinks.smallThumbnail})`,
             }
           }
         />

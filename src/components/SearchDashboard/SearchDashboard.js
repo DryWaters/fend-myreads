@@ -20,8 +20,8 @@ class SearchDashboard extends Component {
   // fetches new books as long as user has entered something
   // if get return of data.error then that means no books were
   // found with that search string
-  // it then sets the state to these new books fetched using 
-  // BooksApi
+  // it then sets the state to these new books fetched using
+  // BooksAPI
   onInputChange(value) {
     if (value !== '') {
       search(value)
@@ -37,6 +37,11 @@ class SearchDashboard extends Component {
     }
   }
 
+  // updates the backend and also the local state of the selected book
+  // changing the "shelf" attribute that represents the bookshelf that
+  // it should be placed on.  Currently on the search page all books are
+  // shown together, but additional feature could be added to create
+  // book shelves within the search page as the local state is being updated
   moveBook(bookToChange, toWhere) {
     const { id } = bookToChange;
     update(bookToChange, toWhere);
@@ -52,6 +57,10 @@ class SearchDashboard extends Component {
     this.setState({ books: newBooks });
   }
 
+  // Use event.persist() on the onChange trigger because when you are using lodash
+  // to supress the number of events, the target will disappear from the call stack.
+  // event.persist() will store the target behind so that it can be called with the
+  // moveBook function()
   render() {
     return (
       <div>
