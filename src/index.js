@@ -11,7 +11,6 @@ const jsx = (
       <Route exact path="/" component={BookDashboard} />
       <Route path="/search" component={SearchDashboard} />
     </div>
-
   </BrowserRouter>
 );
 

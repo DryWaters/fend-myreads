@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import noThumbnail from '../../styles/icons/no-thumbnail.png';
 
 const Book = ({ bookShelf, moveBook, book }) => (
   <li>
@@ -11,7 +12,7 @@ const Book = ({ bookShelf, moveBook, book }) => (
             {
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.smallThumbnail || '../../styles/icons/no-thumbnail.png'}")`,
+              backgroundImage: `url("${book.imageLinks.smallThumbnail || noThumbnail})`,
             }
           }
         />
