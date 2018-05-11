@@ -50,7 +50,8 @@ class SearchDashboard extends Component {
           <Link className="close-search" href="/" to="/" aria-label="Back to main" />
           <input onChange={(e) => { e.persist(); this.onInputChange(e.target.value); }} type="text" placeholder="Search by title or author" />
         </div>
-        {this.state.books.length !== 0 ? <BookShelf moveBook={this.moveBook} books={this.state.books} /> : <NoBooks />}
+        {this.state.books.length !== 0 ?
+          <BookShelf moveBook={this.moveBook} books={this.state.books} /> : <NoBooks />}
       </div>
     );
   }

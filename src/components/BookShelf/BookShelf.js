@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import Book from '../Book/Book';
 
 const BookShelf = ({
-  bookShelf = '', moveBook, title = '', books = [],
+  bookShelf, moveBook, title, books,
 }) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
     <ol className="books-grid">
-      {books !== undefined ? books.map(book => (
-        <Book key={book.id} details={book} moveBook={moveBook} bookShelf={bookShelf} />
-      )) : ''}
+      {
+        books && books.map(book => (
+          <Book key={book.id} details={book} moveBook={moveBook} bookShelf={bookShelf} />
+        ))
+      }
     </ol>
   </div>
 );
@@ -28,5 +30,5 @@ BookShelf.defaultProps = {
   title: '',
   books: [],
   moveBook: () => { },
-  bookShelf: '',
+  bookShelf: 'none',
 };

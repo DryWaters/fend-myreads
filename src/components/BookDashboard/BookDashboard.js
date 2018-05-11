@@ -60,7 +60,7 @@ class BooksDashboard extends Component {
         bookTypes.currentlyReading.books.push(book);
       } else if (book.shelf === 'wantToRead') {
         bookTypes.wantToRead.books.push(book);
-      } else {
+      } else if (book.shelf === 'read') {
         bookTypes.read.books.push(book);
       }
     });
