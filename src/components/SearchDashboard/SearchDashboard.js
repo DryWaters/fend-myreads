@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'underscore';
 import BookShelf from '../BookShelf/BookShelf';
-import { search } from '../BooksAPI/BooksAPI';
+import { search, update } from '../BooksAPI/BooksAPI';
 import NoBooks from '../NoBooks/NoBooks';
 
 class SearchDashboard extends Component {
@@ -30,17 +30,9 @@ class SearchDashboard extends Component {
     }
   }
 
-  moveBook(bookId, toWhere) {
-    const newBooks = this.state.books.map((book) => {
-      if (book.id === bookId) {
-        return {
-          ...book,
-          shelf: toWhere,
-        };
-      }
-      return book;
-    });
-    this.setState({ books: newBooks });
+  moveBook(book, toWhere) {
+    console.log(this);
+    update(book, toWhere);
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Book = ({ bookShelf, moveBook, details }) => (
+const Book = ({ bookShelf, moveBook, book }) => (
   <li>
     <div className="book">
       <div className="book-top">
@@ -11,12 +11,12 @@ const Book = ({ bookShelf, moveBook, details }) => (
             {
               width: 128,
               height: 193,
-              backgroundImage: `url("${details.imageLinks.smallThumbnail || '../../styles/icons/no-thumbnail.png'}")`,
+              backgroundImage: `url("${book.imageLinks.smallThumbnail || '../../styles/icons/no-thumbnail.png'}")`,
             }
           }
         />
         <div className="book-shelf-changer">
-          <select value={bookShelf} onChange={event => moveBook(details.id, event.target.value)}>
+          <select value={bookShelf} onChange={event => moveBook(book, event.target.value)}>
             <option disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
@@ -25,8 +25,8 @@ const Book = ({ bookShelf, moveBook, details }) => (
           </select>
         </div>
       </div>
-      <div className="book-title">{details.title}</div>
-      {details.authors && details.authors.map(author => <div key={author} className="book-authors">{author}</div>)}
+      <div className="book-title">{book.title}</div>
+      {book.authors && book.authors.map(author => <div key={author} className="book-authors">{author}</div>)}
     </div>
   </li>
 );
@@ -34,7 +34,7 @@ const Book = ({ bookShelf, moveBook, details }) => (
 export default Book;
 
 Book.propTypes = {
-  details: PropTypes.shape({
+  book: PropTypes.shape({
     allowAnonLoggin: PropTypes.bool,
     authors: PropTypes.arrayOf(PropTypes.string),
     averageRating: PropTypes.number,

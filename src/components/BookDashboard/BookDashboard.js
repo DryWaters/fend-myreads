@@ -26,9 +26,9 @@ class BooksDashboard extends Component {
       });
   }
 
-  moveBook(bookId, toWhere) {
+  moveBook({ id }, toWhere) {
     const newBooks = this.state.books.map((book) => {
-      if (book.id === bookId) {
+      if (book.id === id) {
         return {
           ...book,
           shelf: toWhere,
