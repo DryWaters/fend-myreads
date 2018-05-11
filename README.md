@@ -18,7 +18,7 @@ All needed NPM packages are included in the package.json file.  To install to yo
 
 * Clone or unzip the zip file from this repository to your computer
 * To install the required packages use ``` npm install ```
-* Then to run use ```npm run start```
+* Then to run use ```npm start```
 
 ## Prerequisites
 All needed NPM packages are included in the package.json file.
