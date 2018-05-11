@@ -1,17 +1,16 @@
 {
-  "name": "My Reads",
+  "name": "my-reads",
   "version": "1.0.0",
   "description": "Book portfolio React application",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DryWaters/fend-myreads"
+    "url": "git://github.com/DryWaters/fend-myreads.git"
   },
   "author": "Daniel Waters",
   "license": "MIT",
   "homepage": "https://github.com/DryWaters/fend-myreads#readme",
   "dependencies": {
-    "eslint-plugin-jsx-a11y": "^6.0.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -21,7 +20,8 @@
   "devDependencies": {
     "react-scripts": "1.1.4",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0"
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
