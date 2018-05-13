@@ -2,19 +2,38 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
 import BookShelf from '../BookShelf';
-import { search, update } from '../BooksAPI';
+import { getAll, search, update } from '../BooksAPI';
 import NoBooks from '../NoBooks';
 
 class SearchDashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      books: [],
+      searchedBooks: [],
+      usersBooks: new Map(),
     };
     // use lodash to debounce to keep from firing API requests
     // constantly as user enters search string
     this.onInputChange = debounce(this.onInputChange, 500);
     this.moveBook = this.moveBook.bind(this);
+  }
+
+  // fetch all books that the current user has from the BooksAPI
+  // when the application starts
+  componentDidMount() {
+    getAll()
+      .then((data) => {
+        const usersBookMap = new Map();
+        data.forEach((book) => {
+          usersBookMap.set(book.id, book.shelf);
+        });
+        this.setState({ usersBooks: usersBookMap });
+      }).then(() => {
+        this.updateBookshelves();
+      })
+      .catch((error) => {
+        window.console.log(`Unable to contact books API with error ${error}`);
+      });
   }
 
   // fetches new books as long as user has entered something
@@ -27,15 +46,32 @@ class SearchDashboard extends Component {
       search(value)
         .then((data) => {
           if (data.error) {
-            this.setState({ books: [] });
+            this.setState({ searchedBooks: [] });
           } else {
-            this.setState({ books: data });
+            this.setState({ searchedBooks: data });
           }
-        }).catch((error) => {
+        })
+        .then(() => this.updateBookshelves())
+        .catch((error) => {
           window.console.log(`Unable to contact Books API with error ${error}`);
         });
     } else {
-      this.setState({ books: [] });
+      this.setState({ searchedBooks: [] });
+    }
+  }
+
+  updateBookshelves() {
+    if (this.state.searchedBooks.length !== 0) {
+      const updatedBooks = this.state.searchedBooks.map((book) => {
+        if (this.state.usersBooks.has(book.id)) {
+          return {
+            ...book,
+            shelf: this.state.usersBooks.get(book.id),
+          };
+        }
+        return book;
+      });
+      this.setState({ searchedBooks: updatedBooks });
     }
   }
 
@@ -47,7 +83,7 @@ class SearchDashboard extends Component {
   moveBook(bookToChange, toWhere) {
     const { id } = bookToChange;
     update(bookToChange, toWhere);
-    const newBooks = this.state.books.map((book) => {
+    const newBooks = this.state.searchedBooks.map((book) => {
       if (book.id === id) {
         return {
           ...book,
@@ -56,7 +92,7 @@ class SearchDashboard extends Component {
       }
       return book;
     });
-    this.setState({ books: newBooks });
+    this.setState({ searchedBooks: newBooks });
   }
 
   // Use event.persist() on the onChange trigger because when you are using lodash
@@ -70,8 +106,8 @@ class SearchDashboard extends Component {
           <Link className="close-search" href="/" to="/" aria-label="Back to main" />
           <input onChange={(e) => { e.persist(); this.onInputChange(e.target.value); }} type="text" placeholder="Search by title or author" />
         </div>
-        {this.state.books.length !== 0 ?
-          <BookShelf moveBook={this.moveBook} books={this.state.books} /> : <NoBooks />}
+        {this.state.searchedBooks.length !== 0 ?
+          <BookShelf moveBook={this.moveBook} books={this.state.searchedBooks} /> : <NoBooks />}
       </div>
     );
   }

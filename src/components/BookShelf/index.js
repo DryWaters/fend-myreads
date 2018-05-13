@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Book from '../Book';
 
 const BookShelf = ({
-  bookShelf, moveBook, title, books,
+  moveBook, title, books,
 }) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
@@ -12,7 +12,7 @@ const BookShelf = ({
         // dynamically create the number of books based passed down from either
         // BookDashboard or SearchDashboard
         books && books.map(book => (
-          <Book key={book.id} book={book} moveBook={moveBook} bookShelf={bookShelf} />
+          <Book key={book.id} book={book} moveBook={moveBook} bookShelf={book.shelf} />
         ))
       }
     </ol>
@@ -25,10 +25,8 @@ BookShelf.propTypes = {
   title: PropTypes.string,
   books: PropTypes.arrayOf(PropTypes.object).isRequired,
   moveBook: PropTypes.func.isRequired,
-  bookShelf: PropTypes.string,
 };
 
 BookShelf.defaultProps = {
   title: '',
-  bookShelf: 'none',
 };
