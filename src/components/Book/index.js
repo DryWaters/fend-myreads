@@ -23,7 +23,7 @@ const Book = ({ bookShelf, moveBook, book }) => (
           }
         />
         <div className="book-shelf-changer">
-          <select value={bookShelf} onChange={event => moveBook(book, event.target.value)}>
+          <select className="book-shelf-changer select" value={bookShelf} onChange={event => moveBook(book, event.target.value)}>
             <option disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
