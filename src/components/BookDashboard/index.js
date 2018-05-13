@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
-import BookShelf from '../BookShelf/BookShelf';
-import NoBooks from '../NoBooks/NoBooks';
-import { getAll, update } from '../BooksAPI/BooksAPI';
+import Header from '../Header';
+import BookShelf from '../BookShelf';
+import NoBooks from '../NoBooks';
+import { getAll, update } from '../BooksAPI';
 
 class BooksDashboard extends Component {
   constructor(props) {

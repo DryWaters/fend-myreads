@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
-import BookShelf from '../BookShelf/BookShelf';
-import { search, update } from '../BooksAPI/BooksAPI';
-import NoBooks from '../NoBooks/NoBooks';
+import BookShelf from '../BookShelf';
+import { search, update } from '../BooksAPI';
+import NoBooks from '../NoBooks';
 
 class SearchDashboard extends Component {
   constructor() {
