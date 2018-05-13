@@ -19,28 +19,18 @@ class SearchDashboard extends Component {
   }
 
   // fetch all books that the current user has from the BooksAPI
-  // when the application starts
+  // when the application starts and creates a hashmap for faster
+  // lookup to set the right shelf for the searched books
   componentDidMount() {
-    getAll()
-      .then((data) => {
-        const usersBookMap = new Map();
-        data.forEach((book) => {
-          usersBookMap.set(book.id, book.shelf);
-        });
-        this.setState({ usersBooks: usersBookMap });
-      }).then(() => {
-        this.updateBookshelves();
-      })
-      .catch((error) => {
-        window.console.log(`Unable to contact books API with error ${error}`);
-      });
+    this.updateUsersBooks();
   }
 
   // fetches new books as long as user has entered something
   // if get return of data.error then that means no books were
   // found with that search string
   // it then sets the state to these new books fetched using
-  // BooksAPI
+  // BooksAPI.  When the user searches for books, it updates the shelf
+  // based on the user's current shelves
   onInputChange(value) {
     if (value !== '') {
       search(value)
@@ -60,6 +50,27 @@ class SearchDashboard extends Component {
     }
   }
 
+  updateUsersBooks() {
+    getAll()
+      .then((data) => {
+        this.mapCurrentUsersBooks(data);
+      }).then(() => {
+        this.updateBookshelves();
+      })
+      .catch((error) => {
+        window.console.log(`Unable to contact books API with error ${error}`);
+      });
+  }
+
+  mapCurrentUsersBooks(data) {
+    const usersBookMap = new Map();
+    data.forEach((book) => {
+      usersBookMap.set(book.id, book.shelf);
+    });
+    this.setState({ usersBooks: usersBookMap });
+  }
+
+  // set the state of user's books
   updateBookshelves() {
     if (this.state.searchedBooks.length !== 0) {
       const updatedBooks = this.state.searchedBooks.map((book) => {
@@ -83,6 +94,7 @@ class SearchDashboard extends Component {
   moveBook(bookToChange, toWhere) {
     const { id } = bookToChange;
     update(bookToChange, toWhere);
+    this.updateLocalMap(id, toWhere);
     const newBooks = this.state.searchedBooks.map((book) => {
       if (book.id === id) {
         return {
@@ -93,6 +105,16 @@ class SearchDashboard extends Component {
       return book;
     });
     this.setState({ searchedBooks: newBooks });
+  }
+
+  updateLocalMap(bookId, toWhere) {
+    const newMap = new Map(this.state.usersBooks);
+    if (newMap.has(bookId)) {
+      newMap.set(bookId, toWhere);
+    } else {
+      newMap.set(bookId, toWhere);
+    }
+    this.setState({ usersBooks: newMap });
   }
 
   // Use event.persist() on the onChange trigger because when you are using lodash

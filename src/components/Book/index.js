@@ -82,5 +82,9 @@ Book.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   moveBook: PropTypes.func.isRequired,
-  bookShelf: PropTypes.string.isRequired,
+  bookShelf: PropTypes.string,
+};
+
+Book.defaultProps = {
+  bookShelf: 'none',
 };
