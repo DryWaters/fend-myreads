@@ -29,7 +29,7 @@ class SearchDashboard extends Component {
   // if get return of data.error then that means no books were
   // found with that search string
   // it then sets the state to these new books fetched using
-  // BooksAPI.  When the user searches for books, it updates the shelf
+  // BooksAPI.  If search returns books, updates the book shelf
   // based on the user's current shelves
   onInputChange(value) {
     if (value !== '') {
@@ -50,6 +50,8 @@ class SearchDashboard extends Component {
     }
   }
 
+  // pulls all user's books and creates a map for their current shelf for
+  // fast look up
   updateUsersBooks() {
     getAll()
       .then((data) => {
@@ -62,6 +64,7 @@ class SearchDashboard extends Component {
       });
   }
 
+  // creates a map for the book id and the shelf it should be placed on
   mapCurrentUsersBooks(data) {
     const usersBookMap = new Map();
     data.forEach((book) => {
@@ -70,7 +73,7 @@ class SearchDashboard extends Component {
     this.setState({ usersBooks: usersBookMap });
   }
 
-  // set the state of user's books
+  // sets the searched results bookshelf
   updateBookshelves() {
     if (this.state.searchedBooks.length !== 0) {
       const updatedBooks = this.state.searchedBooks.map((book) => {
@@ -88,9 +91,8 @@ class SearchDashboard extends Component {
 
   // updates the backend and also the local state of the selected book
   // changing the "shelf" attribute that represents the bookshelf that
-  // it should be placed on.  Currently on the search page all books are
-  // shown together, but additional feature could be added to create
-  // book shelves within the search page as the local state is being updated
+  // it should be placed on.  It also updates the local map containing
+  // the correct shelf
   moveBook(bookToChange, toWhere) {
     const { id } = bookToChange;
     update(bookToChange, toWhere);
@@ -107,6 +109,7 @@ class SearchDashboard extends Component {
     this.setState({ searchedBooks: newBooks });
   }
 
+  // updates the local hashmap of book ids and shelves
   updateLocalMap(bookId, toWhere) {
     const newMap = new Map(this.state.usersBooks);
     if (newMap.has(bookId)) {

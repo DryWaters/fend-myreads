@@ -10,7 +10,6 @@ const Book = ({ bookShelf, moveBook, book }) => (
     <div className="book">
       <div className="book-top">
         <div
-
           className="book-cover"
           // react in-line style that shows either the image if available or the no thumbnail
           // filler image if not available

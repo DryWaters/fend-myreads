@@ -38,7 +38,7 @@ class BooksDashboard extends Component {
     }
     // map over all books and return all parts of the book object, only
     // modifing the shelf attribute that the backend uses to know which
-    // shelf to display on for the user
+    // shelf to display on
     const newBooks = this.state.books.map((book) => {
       if (book.id === id) {
         return {
@@ -53,7 +53,7 @@ class BooksDashboard extends Component {
 
   // checks if should either show the no books component if the user has no
   // books checked out, or all bookshelves if they have at least one.
-  // If there are books, then it divides them up by their "shelf" attribute
+  // If there are books, it divides them up by their "shelf" attribute
   shouldDisplayBookshelves() {
     let jsx = '';
     if (this.state.books.length === 0) {
