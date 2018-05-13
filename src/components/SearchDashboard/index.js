@@ -34,6 +34,8 @@ class SearchDashboard extends Component {
         }).catch((error) => {
           window.console.log(`Unable to contact Books API with error ${error}`);
         });
+    } else {
+      this.setState({ books: [] });
     }
   }
 
