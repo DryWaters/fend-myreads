@@ -11,7 +11,9 @@ MyReads project is a React application that pulls from a backend supplied by Uda
 ## Instructions
 Books are placed in the different categories by clicking the down arrow on the bottom right corner of a book.  To remove a book totally from your book shelves click "none".  To add books to your collection, click on the + icon in the bottom right corner of the screen.  This will take you to a new screen where you can search for additional books to add to your collection.
 
-Search terms are limited as this is just a demo application for the Front-End Nanodegree program.  Please read the [Search Terms](https://github.com/DryWaters/fend-myreads/blob/master/SEARCH_TERMS.md) for the valid search terms.
+Search terms are limited as this is just a demo application for the Front-End Nanodegree program.  Valid search terms include:  
+
+'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
 
 ## Getting Started
 All needed NPM packages are included in the package.json file.  To install to your machine locally:
