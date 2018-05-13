@@ -16,8 +16,6 @@ const Book = ({ bookShelf, moveBook, book }) => (
           // filler image if not available
           style={
             {
-              width: 128,
-              height: 193,
               backgroundImage: `url(${book.imageLinks === undefined ? noThumbnail : book.imageLinks.smallThumbnail})`,
             }
           }
